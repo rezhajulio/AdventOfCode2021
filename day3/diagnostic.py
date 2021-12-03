@@ -16,7 +16,7 @@ class Submarine:
     @staticmethod
     def count_bits(data, position):
         """
-        Count how many '1' bit in a string
+        Count how many '1' bit in a list of string on specified position
         """
         return len(list(filter(lambda row: row[position] == '1', data)))
 
