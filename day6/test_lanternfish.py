@@ -7,7 +7,7 @@ from utils import read_map
 from lanternfish import Lanternfish
 
 
-class TestHydrothermal(unittest.TestCase):
+class TestLanternfish(unittest.TestCase):
     def test_growth_80_days(self):
         data = read_map("test_input.txt", str.strip)
         lanternfish = Lanternfish(data)
