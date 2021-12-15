@@ -14,23 +14,23 @@ class Octopus:
         self.total_flashes = 0
         self.all_flashed = 0
 
-    def steps(self, step=0, all_flashed=False):
+    def steps(self, step=None):
         grid = copy.copy(self.data)
 
-        if not all_flashed:
-            for _ in range(step):
-                grid, flashed = self.get_step(grid)
-                self.total_flashes += flashed
-        else:
-            step_count = 0
-            while True:
-                step_count += 1
-                grid, flashed = self.get_step(grid)
+        step_count = 0
+        while True:
+            step_count += 1
+            grid, flashed = self.get_step(grid)
+            self.total_flashes += flashed
 
-                # stop when all octopus flashed for the first time
-                if flashed == self.height * self.length:
-                    self.all_flashed = step_count
-                    break
+            # stop if provided step already reached
+            if step is not None and step_count == step:
+                break
+
+            # stop when all octopus flashed for the first time
+            if flashed == self.height * self.length:
+                self.all_flashed = step_count
+                break
 
     def get_neighbors(self, x, y):
         for index_x, index_y in (
@@ -71,5 +71,5 @@ if __name__ == "__main__":
     octopus = Octopus(data)
     octopus.steps(step=100)
     print(f"Answer for Q1 is : {octopus.total_flashes}")
-    octopus.steps(all_flashed=True)
+    octopus.steps()
     print(f"Answer for Q2 is : {octopus.all_flashed}")

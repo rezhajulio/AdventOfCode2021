@@ -18,7 +18,7 @@ class TestOctopus(unittest.TestCase):
     def test_when_all_flashed(self):
         data = read_map("test_input.txt", str.strip)
         octopus = Octopus(data)
-        octopus.steps(all_flashed=True)
+        octopus.steps()
         result = octopus.all_flashed
         self.assertEqual(result, 195)
 
